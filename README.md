@@ -35,7 +35,36 @@ Implement synchronization of token balances. Token details provided below.
 
 Implement an interface for minting tokens
 
+# Attachments for RINKEBY (chain id 4)
+## Mint ABI
 
+`
+[
+    {
+        inputs: [
+        {
+            internalType: 'address',
+            name: 'rec',
+            type: 'address',
+        },
+        {
+            internalType: 'uint256',
+            name: 'amount',
+            type: 'uint256',
+        },
+    ],
+    name: 'mint',
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    },
+]
+`
+
+#Tokens
+EYWA `0x08Ffcb0Ca216Bb3C12855910Ee4014191D81eeba`
+
+USDT `0xa9E233E2c06fbAFf7d1D913060d5F4e159092414`
 
 # Notes
 
