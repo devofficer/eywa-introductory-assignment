@@ -7,7 +7,10 @@ const TokenModel = (data = {}) => ({
       label: 'EYWA'
     }
   ],
-  currentToken: ''
+  currentToken: '',
+  account: '',
+  EYWABalance: 0,
+  USDTBalance: 0,
 });
 
 export default TokenModel;
