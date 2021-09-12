@@ -1,4 +1,4 @@
-import { Button, Grid, makeStyles } from '@material-ui/core';
+import { Button, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import Dialog from './Dialog';
 import { inject, observer } from 'mobx-react';
 import TokenSelector from './TokenSelector';
@@ -26,6 +26,9 @@ const useStyles = makeStyles({
     textAlign: 'right',
     color: '#959EBD',
     fontSize: 14,
+  },
+  closeButton: {
+    margin: -12,
   }
 });
 
@@ -43,6 +46,12 @@ const TestTokens = ({ routing, tokens }) => {
     });
   }, [tokens]);
 
+  const handleDisconnet = async () => {
+    await window.web3Modal.clearCachedProvider();
+    routing.push('/connect-wallet');
+    tokens.setAccount(null);
+  };
+
   useEffect(() => {
     if (!tokens.account) {
       routing.push('/connect-wallet');
@@ -55,11 +64,17 @@ const TestTokens = ({ routing, tokens }) => {
   return (
     <Dialog>
       <Grid container justifyContent="space-between" spacing={2} className={classes.root}>
-        <Grid item>
+        <Grid item xs={8}>
           <TokenSelector />
         </Grid>
-        <Grid item className={classes.account}>
-          {`${tokens.account.slice(0, 5)}.....${tokens.account.slice(-4)}`}
+        <Grid container item xs={4} className={classes.account} alignItems="center" justifyContent="space-between">
+          <img src="./assets/img/metamask.svg" alt="meta mask" />
+          <Typography>
+            {`${tokens.account.slice(0, 5)}.....${tokens.account.slice(-4)}`}
+          </Typography>
+          <IconButton className={classes.closeButton} onClick={handleDisconnet}>
+            <img src="./assets/img/close.svg" alt="close mask" />
+          </IconButton>
         </Grid>
         <Grid item xs={12} className={classes.token}>
           EYWA balance: {tokens.EYWABalance}; USDT balance: {tokens.USDTBalance}
